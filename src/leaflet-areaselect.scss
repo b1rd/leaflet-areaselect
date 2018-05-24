@@ -1,0 +1,51 @@
+.areaselect {
+    &__shade {
+      position: absolute;
+      background: rgba(0, 0, 0, 0.4);
+      &_left {
+        border-right: 2px dashed #fff;
+      }
+      &_right {
+        border-left: 2px dashed #fff;
+      }
+    }
+    &__handle {
+      position: absolute;
+      width: 14px;
+      height: 14px;
+      cursor: move;
+      &_nw {
+        border-right: 2px dashed #fff;
+        border-bottom: 2px dashed #fff;
+      }
+      &_sw {
+        border-top: 2px dashed #fff;
+        border-right: 2px dashed #fff;
+      }
+      &_ne {
+        border-left: 2px dashed #fff;
+        border-bottom: 2px dashed #fff;
+      }
+      &_se {
+        border-left: 2px dashed #fff;
+        border-top: 2px dashed #fff;
+      }
+    }
+    &__border {
+      position: absolute;
+      background: rgba(255, 255, 255, 0.5);
+      width: 100%;
+      opacity: 0.5;
+      &_top {
+        border-top: 2px dashed #fff;
+      }
+      &_bottom {
+        border-bottom: 2px dashed #fff;
+      }
+    }
+    &__text {
+      color: white;
+      position: absolute;
+    }
+  }
+  
