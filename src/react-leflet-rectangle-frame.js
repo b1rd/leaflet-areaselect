@@ -1,5 +1,4 @@
 // import L from 'leaflet'
-import './react-leflet-rectangle-frame.scss'
 L.AreaSelect = L.Class.extend({
     includes: L.Evented.prototype,
     
@@ -210,8 +209,6 @@ L.AreaSelect = L.Class.extend({
     setDimensions(this._mmText, { left: leftRightWidth - 24, top: topBottomHeight - 20 })
     setDimensions(this._mmHeightText, { left: leftRightWidth - 25, bottom: topBottomHeight - 22 })
     setDimensions(this._mmWidthText, { right: leftRightWidth - 28, top: topBottomHeight - 20 })
-        
-        // setDimensions(this._nwHandle, {left:leftRightWidth-handleOffset, top:topBottomHeight-7});
     }
 });
 

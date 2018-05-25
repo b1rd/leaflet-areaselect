@@ -1,0 +1,48 @@
+.areaselect__shade {
+  position: absolute;
+  background: rgba(0, 0, 0, 0.4);
+}
+.areaselect__shade_left {
+  border-right: 2px dashed #fff;
+}
+.areaselect__shade_right {
+  border-left: 2px dashed #fff;
+}
+.areaselect__handle {
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  cursor: move;
+}
+.areaselect__handle_nw {
+  border-right: 2px dashed #fff;
+  border-bottom: 2px dashed #fff;
+}
+.areaselect__handle_sw {
+  border-top: 2px dashed #fff;
+  border-right: 2px dashed #fff;
+}
+.areaselect__handle_ne {
+  border-left: 2px dashed #fff;
+  border-bottom: 2px dashed #fff;
+}
+.areaselect__handle_se {
+  border-left: 2px dashed #fff;
+  border-top: 2px dashed #fff;
+}
+.areaselect__border {
+  position: absolute;
+  background: rgba(255, 255, 255, 0.5);
+  width: 100%;
+  opacity: 0.5;
+}
+.areaselect__border_top {
+  border-top: 2px dashed #fff;
+}
+.areaselect__border_bottom {
+  border-bottom: 2px dashed #fff;
+}
+.areaselect__text {
+  color: white;
+  position: absolute;
+}
