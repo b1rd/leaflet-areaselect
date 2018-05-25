@@ -32,3 +32,9 @@ html, body {
     float: left;
     width: 50%;
 }
+
+.leaflet-container {
+    height: 400px;
+    width: 80%;
+    margin: 0 auto;
+}

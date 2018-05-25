@@ -1,12 +1,15 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <title>React frame rectangle</title>
     <link rel="stylesheet" href="style.css" />
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.2/dist/leaflet.css" />
-    <link rel="stylesheet" href="../src/leaflet-areaselect.css" />
+    <!-- <link rel="stylesheet" href="../src/leaflet-areaselect.css" />-->
 </head>
 <body>
-    <div id="map"></div>    
+    <div id="app"></div>
+    <script src="/build/app.js"></script>
+    <!-- <div id="map"></div>    
     <div id="result">
         <div class="left">
             South west:<br>
@@ -25,15 +28,14 @@
             <input type="text" class="height" />       
             <button id="setDimensions">Set Dimensions</button>     
         </div>
-    </div>
-    <a href="https://github.com/heyman/leaflet-areaselect"><img style="position:absolute; top:0; right:0; border:0; z-index: 1000;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png" alt="Fork me on GitHub"></a>
+    </div> -->
     
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
     <script src="https://unpkg.com/leaflet@1.0.2/dist/leaflet.js"></script>
-    <script src="../src/leaflet-areaselect.js"></script>
+    <!-- <script src="../src/leaflet-areaselect.js"></script> -->
     <script>
         // initialize map
-        var map = L.map('map').setView([38, 0], 2);
+        /* var map = L.map('map').setView([38, 0], 2);
         L.tileLayer('https://{s}.tile.osm.org/{z}/{x}/{y}.png', {
             attribution: '&copy; <a href="https://osm.org/copyright">OpenStreetMap</a> contributors'
         }).addTo(map);
@@ -52,6 +54,6 @@
 
         $("#setDimensions").click(function () {
             areaSelect.setDimensions({width: $('.width').val(), height: $('.height').val()})
-        })
+        })*/
     </script>
 </body>

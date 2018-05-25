@@ -1,5 +1,5 @@
 // import L from 'leaflet'
-import './leaflet-areaselect.scss'
+import './react-leflet-rectangle-frame.scss'
 L.AreaSelect = L.Class.extend({
     includes: L.Evented.prototype,
     
