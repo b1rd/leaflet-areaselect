@@ -1,7 +1,5 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-// import L from 'leaflet'
-// import { GeoJSON } from 'react-leaflet'
 import { GridLayer } from "react-leaflet";
 import LeafletRectangleFrame from './react-leflet-rectangle-frame'
 
@@ -19,21 +17,20 @@ const ORIENTATION = {
 }
 
 export default class RectangleFrame extends GridLayer {
-
+  static get propTypes() {
+    return {
+      options: React.PropTypes.object
+    }
+  }
   componentWillMount() {
     super.componentWillMount()
-    // let areaSelect = LeafletRectangleFrame(this.context.map.getSize())
-
+    const { orientation } = this.props.options
     const { y } = this.context.map.getSize()
-    // TODO remove fixed vars
     const hArea = y * SCALE
-    const wArea = hArea * PARAMETERS['orientation']['portrait']
+    const wArea = hArea * PARAMETERS['orientation'][orientation]
     let mmWidth, mmHeight
-    // mmWidth = Math.max(next.options.view.w, next.options.view.h) * 2
-    // mmHeight = Math.min(next.options.view.w, next.options.view.h) * 2
     mmWidth = Math.min(210, 297) * 2
     mmHeight = Math.max(210, 297) * 2
-    // }
     let areaSelect = LeafletRectangleFrame({
       width: wArea,
       height: hArea,
@@ -41,21 +38,6 @@ export default class RectangleFrame extends GridLayer {
       mmHeight,
     })
     areaSelect.addTo(this.context.map)
-    console.log('...',  wArea, hArea, mmWidth, mmHeight)
-    // let area = LeafletRectangleFrame({
-    //   width: 800,
-    //   height: 400,
-    // })
-    // return area
+    console.log(areaSelect.getBounds().toBBoxString())
   }
 }
-
-
-    // super.componentWillMount();
-    // const { additionalGoogleLayer } = this.props;
-
-    // this.leafletElement = new L.gridLayer.googleSubMutant(this.props);
-
-    // if (additionalGoogleLayer) {
-    //   this.leafletElement.addGoogleLayer(additionalGoogleLayer);
-    // }

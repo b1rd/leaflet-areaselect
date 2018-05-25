@@ -4,7 +4,7 @@ import RectangleExample from './RectangleExample'
 
 const example = (
   <Fragment>
-    <h1>KOKOKOKO</h1>
+    <h1>Rectangle frame example</h1>
     <RectangleExample />
   </Fragment>
   )
