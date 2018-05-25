@@ -1,5 +1,6 @@
 .areaselect__shade {
-  position: absolute;
+  position: absolute !important;
+  z-index: 1000;
   background: rgba(0, 0, 0, 0.4);
 }
 .areaselect__shade_left {
@@ -9,7 +10,7 @@
   border-left: 2px dashed #fff;
 }
 .areaselect__handle {
-  position: absolute;
+  position: absolute !important;
   width: 14px;
   height: 14px;
   cursor: move;
@@ -31,7 +32,7 @@
   border-top: 2px dashed #fff;
 }
 .areaselect__border {
-  position: absolute;
+  position: absolute !important;
   background: rgba(255, 255, 255, 0.5);
   width: 100%;
   opacity: 0.5;

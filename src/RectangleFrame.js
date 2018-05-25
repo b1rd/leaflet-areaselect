@@ -1,7 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { GridLayer } from "react-leaflet";
-import LeafletRectangleFrame from './react-leflet-rectangle-frame'
+import LeafletRectangleFrame from './react-leaflet-rectangle-frame'
+import './react-leaflet-rectangle-frame.css'
 
 const SCALE = 0.7
 const PARAMETERS = {
@@ -17,11 +18,11 @@ const ORIENTATION = {
 }
 
 export default class RectangleFrame extends GridLayer {
-  static get propTypes() {
-    return {
-      options: React.PropTypes.object
-    }
-  }
+  // static get propTypes() {
+  //   return {
+  //     options: React.PropTypes.object
+  //   }
+  // }
   componentWillMount() {
     super.componentWillMount()
     const { orientation } = this.props.options

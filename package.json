@@ -1,8 +1,8 @@
 {
-  "name": "react-leflet-rectangle-frame.",
+  "name": "react-leaflet-rectangle-frame.",
   "version": "1.0.0",
   "description": "Leaflet frame as React component built on top leaflet-areaselect.",
-  "main": "dist/react-leflet-rectangle-frame.js",
+  "main": "dist/react-leaflet-rectangle-frame.js",
   "directories": {
     "example": "example"
   },
@@ -39,8 +39,10 @@
     "babel-loader": "^7.1.4",
     "babel-preset-env": "^1.6.1",
     "babel-preset-react": "^6.24.1",
+    "css-loader": "^0.28.11",
     "eslint": "4.19.1",
     "eslint-plugin-react": "7.7.0",
+    "style-loader": "^0.21.0",
     "webpack": "4.6.0",
     "webpack-cli": "^2.0.14",
     "webpack-dev-server": "3.1.3"

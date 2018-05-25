@@ -1,4 +1,3 @@
-// import L from 'leaflet'
 L.AreaSelect = L.Class.extend({
     includes: L.Evented.prototype,
     

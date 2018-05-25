@@ -38,7 +38,7 @@ html, body {
     width: 1200px;
     margin: 0 auto;
 }
-.areaselect__shade {
+/* .areaselect__shade {
     position: absolute !important;
     z-index: 1000;
     background: rgba(0, 0, 0, 0.4);
@@ -86,4 +86,4 @@ html, body {
   .areaselect__text {
     color: white;
     position: absolute;
-  }
+  } */
