@@ -8,7 +8,7 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build:dist": "webpack --mode development ./src/index.js --output ./dist/react-leaflet-google-tile-layer.js & webpack --mode production ./src/index.js --output ./dist/react-leaflet-google-tile-layer.min.js",
+    "build:dist": "webpack --mode development ./src/index.js --output ./dist/react-leaflet-rectangle-frame.js & webpack --mode production ./src/index.js --output ./dist/react-leaflet-rectangle-frame.min.js",
     "build": "npm run build:dist",
     "example": "webpack-dev-server --config ./example/webpack.config.js",
     "lint": "eslint ./src",
