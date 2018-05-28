@@ -12,12 +12,19 @@ L.AreaSelect = L.Class.extend({
 
     initialize: function(options) {
         L.Util.setOptions(this, options);
-        
         this._width = this.options.width;
         this._height = this.options.height;
         this._measureUnits = this.options.measureUnits
         this._mmWidth = this.options.mmWidth
         this._mmHeight = this.options.mmHeight
+    },
+
+    setOptions: function(options) {
+        this.initialize(options)
+        this._mmWidthText.textContent = this._mmWidth
+        this._mmHeightText.textContent = this._mmHeight
+        
+        this._render()
     },
     
     addTo: function(map) {
@@ -66,7 +73,6 @@ L.AreaSelect = L.Class.extend({
     _createElements: function() {
         if (!!this._container)
             return;
-        
         this._container = L.DomUtil.create('div', 'leaflet-areaselect-container', this.map._controlContainer)
         this._topShade = L.DomUtil.create('div', 'areaselect__shade leaflet-control', this._container)
         this._bottomShade = L.DomUtil.create('div', 'areaselect__shade leaflet-control', this._container)
@@ -206,8 +212,8 @@ L.AreaSelect = L.Class.extend({
     setDimensions(this._seHandle, { right: leftRightWidth - 14, bottom: topBottomHeight - 14 })
 
     setDimensions(this._mmText, { left: leftRightWidth - 24, top: topBottomHeight - 20 })
-    setDimensions(this._mmHeightText, { left: leftRightWidth - 25, bottom: topBottomHeight - 22 })
-    setDimensions(this._mmWidthText, { right: leftRightWidth - 28, top: topBottomHeight - 20 })
+    setDimensions(this._mmHeightText, { right: size.x - leftRightWidth + 7, bottom: topBottomHeight - 22 })
+    setDimensions(this._mmWidthText, { left: size.x - leftRightWidth + 7, top: topBottomHeight - 20 })
     }
 });
 

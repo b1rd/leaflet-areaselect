@@ -42,7 +42,7 @@ export default class RectangleExample extends Component {
           zoomControl={true}
           ref={el => (this.map = el)}
         >
-          <RectangleFrame options={{ orientation, measureUnits: 'mm', format, scale: SCALE }} show={show}/>
+          <RectangleFrame options={{ orientation, measureUnits: 'мм', format, scale: SCALE }} show={show}/>
           <TileLayer url="http://{s}.tile.osm.org/{z}/{x}/{y}.png" />
         </Map>
         <div>
