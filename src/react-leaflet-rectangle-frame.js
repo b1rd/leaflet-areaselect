@@ -74,6 +74,7 @@ L.AreaSelect = L.Class.extend({
         if (!!this._container)
             return;
         this._container = L.DomUtil.create('div', 'leaflet-areaselect-container', this.map._controlContainer)
+        this._borderContainer = L.DomUtil.create('div', 'areaselect__borders leaflet-control', this._container)
         this._topShade = L.DomUtil.create('div', 'areaselect__shade leaflet-control', this._container)
         this._bottomShade = L.DomUtil.create('div', 'areaselect__shade leaflet-control', this._container)
         this._leftShade = L.DomUtil.create(
@@ -86,7 +87,6 @@ L.AreaSelect = L.Class.extend({
             'areaselect__shade areaselect__shade_right leaflet-control',
             this._container
         )
-    
         this._topBorder = L.DomUtil.create(
             'div',
             'areaselect__border areaselect__border_top leaflet-control',
@@ -167,7 +167,7 @@ L.AreaSelect = L.Class.extend({
             element.style.right = dimension.right + "px";
         }
         
-        
+    setDimensions(this._borderContainer, {width: size.x - leftRightWidth * 2 + 2, height: size.y - topBottomHeight * 2 + 2, top: topBottomHeight - 1, left: leftRightWidth - 1 })
     setDimensions(this._topShade, { width: size.x, height: topBottomHeight, top: 0, left: 0 })
     setDimensions(this._bottomShade, { width: size.x, height: topBottomHeight, bottom: 0, left: 0 })
     setDimensions(this._leftShade, {
