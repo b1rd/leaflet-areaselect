@@ -4,7 +4,6 @@ import { GridLayer } from "react-leaflet";
 import LeafletRectangleFrame from './react-leaflet-rectangle-frame'
 import './react-leaflet-rectangle-frame.css'
 
-const SCALE = 0.7
 const PARAMETERS = {
   orientation: {
     portrait: 0.707,
@@ -17,28 +16,54 @@ const ORIENTATION = {
   portrait: 'portrait',
 }
 
+let areaSelect = null
+
 export default class RectangleFrame extends GridLayer {
-  // static get propTypes() {
-  //   return {
-  //     options: React.PropTypes.object
-  //   }
-  // }
+  constructor(props) {
+    super(props)
+  }
+  static propTypes = {
+    options: PropTypes.object.isRequired,
+    show: PropTypes.bool,
+  }
   componentWillMount() {
     super.componentWillMount()
-    const { orientation } = this.props.options
-    const { y } = this.context.map.getSize()
-    const hArea = y * SCALE
-    const wArea = hArea * PARAMETERS['orientation'][orientation]
-    let mmWidth, mmHeight
-    mmWidth = Math.min(210, 297) * 2
-    mmHeight = Math.max(210, 297) * 2
-    let areaSelect = LeafletRectangleFrame({
-      width: wArea,
-      height: hArea,
-      mmWidth,
-      mmHeight,
-    })
+    const { options } = this.props
+    const areaParams = this.getMeasures(options)
+    areaSelect = LeafletRectangleFrame(areaParams)
     areaSelect.addTo(this.context.map)
     console.log(areaSelect.getBounds().toBBoxString())
+  }
+
+  componentWillReceiveProps(next) {
+    if (!next.show) {
+      if (areaSelect) {
+        areaSelect.remove()
+        areaSelect = null
+      }
+      return
+    }
+    const { options } = next
+    const areaParams = this.getMeasures(options)
+    // ERROR HERE
+    // areaSelect = LeafletRectangleFrame(areaParams)
+    // areaSelect.addTo(this.context.map)
+  }
+
+  getMeasures(options) {
+    const { orientation, measureUnits, scale } = options
+    const { y } = this.context.map.getSize()
+    const height = y * scale
+    const width = height * PARAMETERS['orientation'][orientation]
+    // TODO PARAMS
+    const mmWidth = Math.min(210, 297) * 2
+    const mmHeight = Math.max(210, 297) * 2
+    return {
+      width,
+      height,
+      mmWidth,
+      mmHeight,
+      measureUnits
+    }
   }
 }

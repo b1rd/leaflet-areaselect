@@ -10,6 +10,7 @@
   border-left: 2px dashed #fff;
 }
 .areaselect__handle {
+  z-index: 1001;
   position: absolute !important;
   width: 14px;
   height: 14px;
@@ -46,4 +47,5 @@
 .areaselect__text {
   color: white;
   position: absolute;
+  z-index: 1001;
 }
