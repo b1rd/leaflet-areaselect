@@ -1,5 +1,5 @@
 {
-  "name": "react-leaflet-rectangle-frame.",
+  "name": "react-leaflet-rectangle-frame",
   "version": "1.0.0",
   "description": "Leaflet frame as React component built on top leaflet-areaselect.",
   "main": "dist/react-leaflet-rectangle-frame.js",
