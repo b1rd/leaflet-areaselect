@@ -42,29 +42,33 @@ export default class RectangleExample extends Component {
     const { orientation, measureUnits, format, show, bbox } = this.state
     return (
       <div>
-        <h2>Bbox</h2>
-        <div>
-          {bbox}
-        </div>
-        <div>
-          <h3>Options</h3>
+        <div style={{ display: 'flex', justifyContent: 'space-around'}}>
           <div>
+            <h2>Bbox</h2>
             <div>
-              <span>Orientation</span>
-              <select name="text" value={this.state.orientation} onChange={this.handleOrientation}>
-                <option value="landscape">landscape</option> 
-                <option value="portrait">portrait</option>
-              </select>
+              {bbox}
             </div>
+          </div>
+          <div style={{ padding: '10px' }}>
+            <h3>Options</h3>
             <div>
-              <span>Format</span>
-              <select name="text" value={this.state.format} onChange={this.handleFormat}>
-                <option value="a0">a0</option>
-                <option value="a1">a1</option>
-                <option value="a2">a2</option>
-                <option value="a3">a3</option>
-                <option value="a4">a4</option>
-              </select>
+              <div style={{ marginBottom: '10px' }}>
+                <span>Orientation</span>
+                <select name="text" value={this.state.orientation} onChange={this.handleOrientation}>
+                  <option value="landscape">landscape</option> 
+                  <option value="portrait">portrait</option>
+                </select>
+              </div>
+              <div>
+                <span>Format</span>
+                <select name="text" value={this.state.format} onChange={this.handleFormat}>
+                  <option value="a0">a0</option>
+                  <option value="a1">a1</option>
+                  <option value="a2">a2</option>
+                  <option value="a3">a3</option>
+                  <option value="a4">a4</option>
+                </select>
+              </div>
             </div>
           </div>
         </div>
