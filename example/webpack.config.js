@@ -4,7 +4,9 @@ var webpack = require('webpack');
 module.exports = {
   mode: 'development',
   devtool: 'source-map',
-  entry: './index.js',
+  entry: {
+    app: __dirname + '/index.js'
+  },
   module: {
     rules: [
       {
@@ -31,7 +33,7 @@ module.exports = {
   },
   output: {
     path: __dirname + '/build/',
-    filename: 'index.bundle.js',
+    filename: '[name].js',
     publicPath: 'http://localhost:8000/build'
   },
   plugins: [

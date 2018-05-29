@@ -1,6 +1,6 @@
 .areaselect__shade {
   position: absolute !important;
-  z-index: 1000;
+  z-index: 999;
   background: rgba(0, 0, 0, 0.4);
 }
 .areaselect__borders {

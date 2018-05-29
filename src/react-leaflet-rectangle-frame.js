@@ -28,12 +28,28 @@ L.AreaSelect = L.Class.extend({
         this.initialize(options)
         const { x, y } = this.map.getSize()
 
-        this._height = y * this._scale
-        this._width = this._height * this.options.proportions[this._orientation]
+        if (this.options.proportions[this._orientation] < 1) {
+            this._height = Math.min(x, y) * this._scale
+            this._width = this._height * this.options.proportions[this._orientation]
+        } else {
+            this._width = Math.min(x, y) * this._scale
+            this._height = this._width / this.options.proportions[this._orientation]
+        }
         this._mmWidthText.textContent = this._mmWidth
         this._mmHeightText.textContent = this._mmHeight
         
         this._render()
+    },
+
+    _recalculateArea: function() {
+        const { x, y } = this.map.getSize()
+        if (this.options.proportions[this._orientation] < 1) {
+            this._height = Math.min(x, y) * this._scale
+            this._width = this._height * this.options.proportions[this._orientation]
+        } else {
+            this._width = Math.min(x, y) * this._scale
+            this._height = this._width / this.options.proportions[this._orientation]
+        }
     },
     
     addTo: function(map) {
@@ -41,8 +57,13 @@ L.AreaSelect = L.Class.extend({
 
         const { x, y } = this.map.getSize()
 
-        this._height = y * this._scale
-        this._width = this._height * this.options.proportions[this._orientation]
+        if (this.options.proportions[this._orientation] < 1) {
+            this._height = Math.min(x, y) * this._scale
+            this._width = this._height * this.options.proportions[this._orientation]
+        } else {
+            this._width = Math.min(x, y) * this._scale
+            this._height = this._width / this.options.proportions[this._orientation]
+        }
 
         this._createElements();
         this._render();
@@ -160,6 +181,7 @@ L.AreaSelect = L.Class.extend({
     
     _onMapResize: function() {
         this.fire("change");
+        this._recalculateArea()
         this._render();
         this._updateBbox(this.getBounds())
     },
