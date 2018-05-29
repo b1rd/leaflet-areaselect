@@ -10,8 +10,14 @@ export default class RectangleExample extends Component {
     this.state = {
       format: 'a4',
       orientation: 'portrait',
-      show: false,
+      show: true,
+      bbox: ''
     }
+  }
+
+  onChangeBbox = (bbox) => {
+    const { bboxStr } = bbox
+    this.setState({ bbox: bboxStr })
   }
 
   handleOrientation = (e) => {
@@ -33,7 +39,7 @@ export default class RectangleExample extends Component {
   }
 
   render() {
-    const { orientation, measureUnits, format, show } = this.state
+    const { orientation, measureUnits, format, show, bbox } = this.state
     return (
       <div>
         <Map
@@ -42,7 +48,7 @@ export default class RectangleExample extends Component {
           zoomControl={true}
           ref={el => (this.map = el)}
         >
-          <RectangleFrame options={{ orientation, measureUnits: 'мм', format, scale: SCALE }} show={show}/>
+          {this.state.show && <RectangleFrame options={{ orientation, measureUnits: 'мм', format, scale: SCALE }} onChange={this.onChangeBbox}show={show}/>}
           <TileLayer url="http://{s}.tile.osm.org/{z}/{x}/{y}.png" />
         </Map>
         <div>
@@ -72,6 +78,11 @@ export default class RectangleExample extends Component {
               </label>
             </div>
           </div>
+          <h2>Bbox</h2>
+          <div>
+            {bbox}
+          </div>
+          
         </div>
       </div>
     )

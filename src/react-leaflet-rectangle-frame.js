@@ -2,25 +2,34 @@ L.AreaSelect = L.Class.extend({
     includes: L.Evented.prototype,
     
     options: {
-        width: 200,
-        height: 300,
         mmWidth: 297,
         mmHeight: 210,
+        scale: 0.7,
+        orientation: 'portrait',
         measureUnits: 'мм',
         keepAspectRatio: false,
+        proportions: {
+            portrait: 0.707,
+            landscape: 1.414,
+        }
     },
 
     initialize: function(options) {
         L.Util.setOptions(this, options);
-        this._width = this.options.width;
-        this._height = this.options.height;
+        this._orientation = this.options.orientation
+        this._scale = this.options.scale
         this._measureUnits = this.options.measureUnits
         this._mmWidth = this.options.mmWidth
         this._mmHeight = this.options.mmHeight
+        this._updateBbox = this.options.onUpdateBbox
     },
 
     setOptions: function(options) {
         this.initialize(options)
+        const { x, y } = this.map.getSize()
+
+        this._height = y * this._scale
+        this._width = this._height * this.options.proportions[this._orientation]
         this._mmWidthText.textContent = this._mmWidth
         this._mmHeightText.textContent = this._mmHeight
         
@@ -29,6 +38,12 @@ L.AreaSelect = L.Class.extend({
     
     addTo: function(map) {
         this.map = map;
+
+        const { x, y } = this.map.getSize()
+
+        this._height = y * this._scale
+        this._width = this._height * this.options.proportions[this._orientation]
+
         this._createElements();
         this._render();
         return this;
@@ -144,11 +159,14 @@ L.AreaSelect = L.Class.extend({
     },
     
     _onMapResize: function() {
+        this.fire("change");
         this._render();
+        this._updateBbox(this.getBounds())
     },
     
     _onMapChange: function() {
         this.fire("change");
+        this._updateBbox(this.getBounds())
     },
     
     _render: function() {

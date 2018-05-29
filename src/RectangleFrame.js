@@ -4,12 +4,6 @@ import { MapControl } from "react-leaflet";
 import LeafletRectangleFrame from './react-leaflet-rectangle-frame'
 import './react-leaflet-rectangle-frame.css'
 
-const PARAMETERS = {
-  orientation: {
-    portrait: 0.707,
-    landscape: 1.414,
-  },
-}
 
 const ORIENTATION = {
   landscape: 'landscape',
@@ -40,22 +34,38 @@ const PAGE_SIZES = {
 }
 
 export default class RectangleFrame extends MapControl {
+  static propTypes = {
+    options: PropTypes.object,
+    onChange: PropTypes.func,
+  }
   createLeafletElement(props) {
     const { options } = props
     return new LeafletRectangleFrame(this.getMeasures(options))
   }
 
   updateLeafletElement(fromProps, toProps) {
-    const { options } = toProps
-    console.log(this.getMeasures(options))
-    this.leafletElement.setOptions(this.getMeasures(options))
+    // Changes from new props
+    if (JSON.stringify(fromProps.options) !== JSON.stringify(toProps.options)) {
+      this.leafletElement.setOptions(this.getMeasures(toProps.options))
+      this.updateBbox(this.leafletElement.getBounds())
+    }
+  }
+
+  componentDidMount() {
+    this.leafletElement.addTo(this.context.map)
+    this.updateBbox(this.leafletElement.getBounds())
+  }
+
+  updateBbox = (bbox) => {
+    // Changes from resize & other map events
+    const { onChange } = this.props
+    const bboxStr = bbox.toBBoxString()
+    onChange({ bbox, bboxStr })
   }
 
   getMeasures(options) {
     const { orientation, measureUnits, scale, format } = options
-    const { y } = this.context.map.getSize()
-    const height = y * scale
-    const width = height * PARAMETERS['orientation'][orientation]
+
     let mmWidth, mmHeight
     if (orientation === ORIENTATION.portrait) {
       mmWidth = PAGE_SIZES[format].w
@@ -65,44 +75,12 @@ export default class RectangleFrame extends MapControl {
       mmHeight = PAGE_SIZES[format].w
     }
     return {
-      width,
-      height,
       mmWidth,
       mmHeight,
-      measureUnits
+      measureUnits,
+      scale,
+      orientation,
+      onUpdateBbox: this.updateBbox,
     }
   }
 }
-
-// export default class RectangleFrame extends GridLayer {
-//   constructor(props) {
-//     super(props)
-//   }
-//   static propTypes = {
-//     options: PropTypes.object.isRequired,
-//     show: PropTypes.bool,
-//   }
-//   componentWillMount() {
-//     super.componentWillMount()
-//     const { options } = this.props
-//     const areaParams = this.getMeasures(options)
-//     areaSelect = LeafletRectangleFrame(areaParams)
-//     areaSelect.addTo(this.context.map)
-//     console.log(areaSelect.getBounds().toBBoxString())
-//   }
-
-//   componentWillReceiveProps(next) {
-//     if (!next.show) {
-//       if (areaSelect) {
-//         areaSelect.remove()
-//         areaSelect = null
-//       }
-//       return
-//     }
-//     const { options } = next
-//     const areaParams = this.getMeasures(options)
-//     // ERROR HERE
-//     // areaSelect = LeafletRectangleFrame(areaParams)
-//     // areaSelect.addTo(this.context.map)
-//   }
-// }
