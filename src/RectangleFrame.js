@@ -2,8 +2,6 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { MapControl } from "react-leaflet";
 import LeafletRectangleFrame from './react-leaflet-rectangle-frame'
-import './react-leaflet-rectangle-frame.css'
-
 
 const ORIENTATION = {
   landscape: 'landscape',

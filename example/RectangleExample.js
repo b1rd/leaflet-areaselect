@@ -42,15 +42,10 @@ export default class RectangleExample extends Component {
     const { orientation, measureUnits, format, show, bbox } = this.state
     return (
       <div>
-        <Map
-          center={[42.09618442380296, -71.5045166015625]}
-          zoom={2}
-          zoomControl={true}
-          ref={el => (this.map = el)}
-        >
-          {this.state.show && <RectangleFrame options={{ orientation, measureUnits: 'мм', format, scale: SCALE }} onChange={this.onChangeBbox}show={show}/>}
-          <TileLayer url="http://{s}.tile.osm.org/{z}/{x}/{y}.png" />
-        </Map>
+        <h2>Bbox</h2>
+        <div>
+          {bbox}
+        </div>
         <div>
           <h3>Options</h3>
           <div>
@@ -71,19 +66,17 @@ export default class RectangleExample extends Component {
                 <option value="a4">a4</option>
               </select>
             </div>
-            <div>
-              <label>
-                Show
-                <input type="checkbox" checked={this.state.show} onChange={this.handleShow} />
-              </label>
-            </div>
           </div>
-          <h2>Bbox</h2>
-          <div>
-            {bbox}
-          </div>
-          
         </div>
+        <Map
+          center={[42.09618442380296, -71.5045166015625]}
+          zoom={2}
+          zoomControl={true}
+          ref={el => (this.map = el)}
+        >
+          {this.state.show && <RectangleFrame options={{ orientation, measureUnits: 'мм', format, scale: SCALE }} onChange={this.onChangeBbox} />}
+          <TileLayer url="http://{s}.tile.osm.org/{z}/{x}/{y}.png" />
+        </Map>
       </div>
     )
   }
