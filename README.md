@@ -3,7 +3,7 @@ A Leaflet frame as React component built on top leaflet-areaselect.
 
 ### Example
 
-[source](example/index.html)
+[example](https://b1rd.github.io/) & [source](example/index.html)
 
 ### License
 
