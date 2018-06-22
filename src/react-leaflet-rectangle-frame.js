@@ -8,6 +8,8 @@ L.AreaSelect = L.Class.extend({
         orientation: 'portrait',
         measureUnits: 'мм',
         keepAspectRatio: false,
+        backgroundColor: 'rgba(42, 52, 62, 0.6)',
+        frameColor: 'rgba(255, 255, 255, 0.5)',
         proportions: {
             portrait: 0.707,
             landscape: 1.414,
@@ -22,6 +24,8 @@ L.AreaSelect = L.Class.extend({
         this._mmWidth = this.options.mmWidth
         this._mmHeight = this.options.mmHeight
         this._updateBbox = this.options.onUpdateBbox
+        this._backgroundColor = this.options.backgroundColor
+        this._frameColor = this.options.frameColor
     },
 
     setOptions: function(options) {
@@ -142,7 +146,17 @@ L.AreaSelect = L.Class.extend({
             'div',
             'areaselect__border areaselect__border_right leaflet-control',
             this._container
+        
         )
+        this._topShade.style.background = this._backgroundColor
+        this._bottomShade.style.background = this._backgroundColor
+        this._leftShade.style.background = this._backgroundColor
+        this._rightShade.style.background = this._backgroundColor
+
+        this._topBorder.style.background = this._frameColor
+        this._bottomBorder.style.background = this._frameColor
+        this._leftBorder.style.background = this._frameColor
+        this._rightBorder.style.background = this._frameColor
     
         this._mmText = L.DomUtil.create('span', 'areaselect__text leaflet-control', this._container)
         this._mmWidthText = L.DomUtil.create('span', 'areaselect__text leaflet-control', this._container)

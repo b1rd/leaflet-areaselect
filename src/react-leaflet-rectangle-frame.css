@@ -1,7 +1,7 @@
 .areaselect__shade {
   position: absolute !important;
   z-index: 999;
-  background: rgba(0, 0, 0, 0.4);
+  /* background: rgba(0, 0, 0, 0.4); */
 }
 .areaselect__borders {
   z-index: 1001;
@@ -32,15 +32,8 @@
 }
 .areaselect__border {
   position: absolute !important;
-  background: rgba(255, 255, 255, 0.5);
   width: 100%;
 }
-/* .areaselect__border_top {
-  border-top: 2px dashed #fff;
-}
-.areaselect__border_bottom {
-  border-bottom: 2px dashed #fff;
-} */
 .areaselect__text {
   color: white;
   position: absolute;
